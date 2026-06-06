@@ -35,7 +35,7 @@ body {
     min-height: 310px;
     height: auto;
     aspect-ratio: 1.7 / 1;
-    padding: 25px;
+    padding: 30px; /* Leve ajuste de respiro para ajudar na centralização */
     
     /* Fundo alterado de #dce7f7 para branco puro conforme solicitado */
     background-color: #FFFFFF; 
@@ -50,15 +50,97 @@ body {
     overflow: hidden; 
 }
 
+
+/* CONFIGURAÇÃO DOS PARAFUSOS */
+.card-front, .card-back {
+    position: relative; /* Essencial para os parafusos ficarem nos cantos de cada face */
+}
+
+.parafuso {
+    position: absolute;
+    width: 45px; /* Tamanho ajustado para elegância */
+    height: auto;
+    z-index: 100; /* Garante que fiquem acima da borda bronze */
+    pointer-events: none;
+}
+
+/* Posicionamento dos parafusos */
+.topo-esq { top: 15px; left: 15px; }
+.topo-dir { top: 15px; right: 15px; }
+.baixo-esq { bottom: 15px; left: 15px; }
+.baixo-dir { bottom: 15px; right: 15px; }
+
+
+/* Contorno */
 .bronze-edge {
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
-    /* Borda sutil para dar o acabamento elegante no cartão branco */
-    box-shadow: inset 0 0 0 2px rgba(0, 85, 255, 0.1); 
-    pointer-events: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
     border-radius: 25px;
+    pointer-events: none;
     z-index: 2;
+
+    box-shadow:
+        /* Profundidade interna */
+        inset 3px 3px 5px rgba(0, 0, 0, 0.20),
+        inset -3px -3px 5px rgba(255, 255, 255, 0.60),
+
+        /* Reflexos do vidro */
+        inset 0 1px 0 rgba(255,255,255,0.95),
+        inset 0 0 12px rgba(255,255,255,0.25),
+
+        /* Camadas da borda de vidro */
+        0 0 0 2px rgba(255,255,255,0.60),
+        0 0 0 4px rgba(200,230,255,0.25),
+        0 0 0 6px rgba(255,255,255,0.12),
+
+        /* Sombra externa */
+        0 8px 20px rgba(0,0,0,0.12);
 }
+
+.bronze-edge::before {
+    content: "";
+    position: absolute;
+    inset: 3px;
+
+    border-radius: 22px;
+
+    border-top: 1px solid rgba(255,255,255,0.9);
+    border-left: 1px solid rgba(255,255,255,0.5);
+
+    background: linear-gradient(
+        180deg,
+        rgba(255,255,255,0.25) 0%,
+        rgba(255,255,255,0.05) 20%,
+        transparent 40%
+    );
+
+    opacity: 0.9;
+}
+.bronze-edge {
+    overflow: hidden;
+}
+.bronze-edge::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -30%;
+    width: 60%;
+    height: 100%;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,255,255,0.12),
+        transparent
+    );
+
+    transform: skewX(-25deg);
+}
+
 
 .content {
     display: flex;
@@ -70,7 +152,7 @@ body {
     z-index: 1;
 }
 
-/* LOGO TIPO */
+/* LOGOTIPO E TEXTOS */
 .brand-wrapper {
     display: flex;
     flex-direction: column;
@@ -79,19 +161,19 @@ body {
 }
 
 .logo-img-front {
-    width: 100px;          /* Define uma largura ideal e elegante */
-    height: auto;          /* Mantém a proporção original para não amassar a imagem */
-    object-fit: contain;   /* Garante que o desenho fique perfeito dentro do espaço */
-    margin-bottom: 10px;   /* Cria um espaçamento saudável para os textos de baixo */
+    width: 100px;
+    height: auto;
+    object-fit: contain;
+    margin-bottom: 10px;
 }
 
 .csm-part {
-    color: #333333; /* Grafite escuro */
+    color: #333333;
     font-weight: 700;
 }
 
 .vidros-part {
-    color: #0055FF; /* Azul vibrante */
+    color: #0055FF;
     font-weight: 500;
 }
 
@@ -99,10 +181,39 @@ body {
     font-family: 'Montserrat', sans-serif;
     color: #555;
     font-size: 11px;
-    letter-spacing: 2px; /* Espaçamento largo igual ao da foto */
+    letter-spacing: 2px;
     font-weight: 700;
     margin-top: 8px;
     text-transform: uppercase;
+}
+
+.sub-slogan {
+    font-family: 'Montserrat', sans-serif;
+    color: #777777;
+    font-size: 10px;
+    letter-spacing: 3px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+
+.divider-line {
+    width: 75%;
+    height: 1px;
+    background-color: #C5A059;
+    margin-top: 5px;
+    margin-bottom: 12px;
+    opacity: 0.6;
+}
+
+.engineer-name {
+    font-family: 'Montserrat', sans-serif;
+    color: #555555;
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-top: 10px;
 }
 
 /* BLOCO DE CONTATOS */
@@ -110,44 +221,40 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px; 
+    gap: 12px;
 }
 
 .link-contato {
     text-decoration: none;
-    /* Alterado para escuro para dar contraste com o fundo branco */
-    color: #555555;; 
+    color: #555555;
     font-family: 'Montserrat', sans-serif;
-    font-size: 20px;
+    font-size: 15px;
     font-weight: 600;
     display: flex;
     align-items: center;
-    gap: 8px; /* Ajustado levemente para acomodar múltiplos ícones com harmonia */
-    transition: transform 0.2s, color 0.3s ease; /* Adicionado transição de cor suave */
+    gap: 8px;
+    transition: transform 0.2s, color 0.3s ease;
 }
 
-/* Ajuste do efeito hover para ficar em azul nos números e ícones */
 .link-contato:hover {
     transform: scale(1.05);
-    color: #0055FF; /* Transforma o texto em azul */
+    color: #0055FF;
 }
 
 .link-contato:hover svg {
-    fill: #0055FF !important; /* Transforma os ícones SVG em azul no hover */
+    fill: #0055FF !important;
 }
 
 .whatsapp-icon {
-    fill: #25D366; /* Tirado o !important para permitir que mude para azul no hover */ 
+    fill: #25D366;
     transition: fill 0.3s ease;
 }
 
-/* Estilo específico para o ícone de telefone fixo acompanhar a transição */
 .phone-icon {
     fill: #333333;
     transition: fill 0.3s ease;
 }
 
-/* MODIFICADO: Ajuste de estilo para o endereço centralizado com hover */
 .address-block {
     margin-top: 5px;
     font-family: 'Montserrat', sans-serif;
@@ -155,38 +262,35 @@ body {
     color: #666666;
     line-height: 1.4;
     font-weight: 500;
-    
-    display: flex;          
-    flex-direction: column;   /* Empilha o ícone e os textos em formato de coluna */
-    align-items: center;      /* Centraliza o ícone e o bloco de texto horizontalmente */
-    gap: 6px;               
-    text-align: center;       /* Centraliza as linhas de texto (Rua e CEP) */
-    text-decoration: none;  
-    transition: color 0.3s ease, transform 0.2s ease; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    text-align: center;
+    text-decoration: none;
+    transition: transform 0.2s, color 0.3s ease;
 }
 
-/* Efeito ao passar o mouse por cima do endereço centralizado */
 .address-block:hover {
-    color: #0055FF;         
-    transform: scale(1.02); 
+    transform: scale(1.05);
+    color: #0055FF;
 }
 
-/* Garante que os parágrafos internos fiquem centralizados */
 .address-text {
     display: flex;
-    flex-direction: column;   
-    align-items: center;      
+    flex-direction: column;
+    align-items: center;
     width: 100%;
 }
 
-/* Classe para controlar o ícone do Maps centralizado */
 .maps-icon {
-    fill: #0055FF;          
-    margin-top: 0;            /* Resetado para ficar perfeito acima do texto */
-    flex-shrink: 0;         
+    width: 18px;
+    height: 18px;
+    fill: #0055FF;
+    flex-shrink: 0;
 }
 
-/* BOTÃO FLUTUANTE DE VOLTA */
+/* BOTÃO FLUTUANTE */
 .whatsapp-float {
     position: fixed;
     bottom: 30px;
@@ -220,46 +324,126 @@ body {
     .slogan { font-size: 9px; letter-spacing: 1px; }
     .link-contato { font-size: 18px; }
 }
-.bronze-edge {
-    position: absolute;
-    top: 0; 
-    left: 0; 
-    width: 100%; 
+
+/* ========================================================================
+   CARD BACK - LAYOUT CORPORATIVO PREMIUM
+   Linha superior: QR (esquerda) + Logo Blindex (direita)
+   Linha inferior: contatos centralizados em largura total
+   ======================================================================== */
+
+/* Grid: colunas laterais flexíveis centralizam o par QR + logo */
+.content-back {
+    display: grid;
+    grid-template-columns: 1fr auto auto 1fr;
+    grid-template-rows: auto auto;
+    align-items: start;
+    gap: 24px 20px;
+    padding: 0 15px 10px;
+    width: 100%;
     height: 100%;
-    
-    /* >>> ALTERE ESTA LINHA ABAIXO PARA DAR O TOM DOURADO METÁLICO FINO <<< */
-    box-shadow: inset 0 0 0 2px #706a6a; 
-    
-    pointer-events: none;
-    border-radius: 25px; /* Mantém o mesmo arredondamento do cartão */
-    z-index: 2;
 }
-/* A RISCA FINA ABAIXO DO SLOGAN (Estilo Carlos Albuquerque) */
-.divider-line {
-    width: 75%;                
-    height: 1px;               
-    background-color: #C5A059; 
-    margin-top: 5px;           /* REDUZIDO: Elimina o espaço vazio acima da linha, fazendo ela subir */
-    margin-bottom: 12px;       /* Espaço sutil e confortável para o nome do engenheiro abaixo */
-    opacity: 0.6;
+
+/* QR Code — ao lado da logo, par centralizado */
+.column-left {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: start;
+    margin-top: -18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-/* ESTILO DO NOME DO ENGENHEIRO - IDÊNTICO AO SLOGAN */
-.engineer-name {
-    font-family: 'Montserrat', sans-serif;
-    color: #555555;            /* Exatamente o mesmo tom cinza do slogan */
-    font-size: 11px;           /* Mesmo tamanho do slogan */
-    letter-spacing: 2px;       /* Mesmo espaçamento largo entre as letras */
-    font-weight: 700;          /* Mesmo peso de negrito */
-    text-transform: uppercase; /* Força a ficar em maiúsculo (ENG. VALMIR SOUZA) */
-    margin-top: 10px;          /* Espaço sutil abaixo da risca horizontal */
+
+.back-qr-code {
+    width: 117px;
+    height: auto;
+    object-fit: contain;
+    display: block;
 }
-/* ESTILO DO TEXTO REVENDA FRANQUEADA */
-.sub-slogan {
-    font-family: 'Montserrat', sans-serif;
-    color: #777777;            /* Um tom cinza um pouco mais sutil que o slogan */
-    font-size: 10px;           /* Tamanho ligeiramente menor para criar hierarquia visual */
-    letter-spacing: 3px;       /* Um espaçamento elegante entre as letras */
-    font-weight: 600;          /* Peso semi-negrito para boa legibilidade */
-    text-transform: uppercase; /* Mantém em letras maiúsculas seguindo o padrão da marca */
-    margin-top: 10px;           /* Distância sutil em relação ao slogan de cima */
+
+/* Logo Blindex — ao lado do QR, par centralizado */
+.column-right {
+    grid-column: 3;
+    grid-row: 1;
+    align-self: start;
+    margin-top: -18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.back-blindex-logo {
+    width: 117px;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Contatos — segunda linha, ocupa as duas colunas, centralizado */
+.content-back .contact-info-block {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    margin-top: -10px;
+}
+
+.content-back .link-contato {
+    justify-content: center;
+    font-size: 16px;
+}
+
+.content-back .address-block {
+    margin-top: 18px;
+    color: #555555;
+    font-weight: 600;
+}
+
+.content-back .address-block:hover,
+.content-back .address-block:hover .address-text p {
+    color: #0055FF;
+}
+
+.content-back .maps-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.content-back .address-text p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.35;
+    font-weight: 600;
+}
+
+/* RESPONSIVIDADE — CARD BACK */
+@media (max-width: 600px) {
+    .content-back {
+        grid-template-columns: 1fr auto auto 1fr;
+        gap: 16px 12px;
+        padding: 0 10px 8px;
+    }
+
+    .back-qr-code {
+        width: 90px;
+        height: auto;
+    }
+
+    .back-blindex-logo {
+        width: 90px;
+    }
+
+    .content-back .contact-info-block {
+        gap: 8px;
+    }
+
+    .content-back .link-contato {
+        font-size: 15px;
+    }
+
+    .content-back .address-text p {
+        font-size: 15px;
+    }
 }

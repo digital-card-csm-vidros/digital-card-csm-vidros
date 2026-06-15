@@ -280,13 +280,15 @@ body {
     transition: transform 0.2s, color 0.3s ease;
 }
 
-.link-contato:hover {
-    transform: scale(1.05);
-    color: #0055FF;
-}
+@media (hover: hover) {
+    .link-contato:hover {
+        transform: scale(1.05);
+        color: #0055FF;
+    }
 
-.link-contato:hover svg {
-    fill: #0055FF !important;
+    .link-contato:hover svg {
+        fill: #0055FF !important;
+    }
 }
 
 .whatsapp-icon {
@@ -315,9 +317,11 @@ body {
     transition: transform 0.2s, color 0.3s ease;
 }
 
-.address-block:hover {
-    transform: scale(1.05);
-    color: #0055FF;
+@media (hover: hover) {
+    .address-block:hover {
+        transform: scale(1.05);
+        color: #0055FF;
+    }
 }
 
 .address-text {
@@ -474,9 +478,11 @@ body {
     font-weight: 600;
 }
 
-.content-back .address-block:hover,
-.content-back .address-block:hover .address-text p {
-    color: #0055FF;
+@media (hover: hover) {
+    .content-back .address-block:hover,
+    .content-back .address-block:hover .address-text p {
+        color: #0055FF;
+    }
 }
 
 .content-back .maps-icon {

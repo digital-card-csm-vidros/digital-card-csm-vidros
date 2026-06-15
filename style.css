@@ -337,8 +337,8 @@ body {
 /* BOTÃO FLUTUANTE */
 .whatsapp-float {
     position: fixed;
-    bottom: 30px;
-    right: 30px;
+    bottom: 24px;
+    right: 24px;
     width: 60px;
     height: 60px;
     background-color: #25D366;
@@ -347,7 +347,7 @@ body {
     justify-content: center;
     align-items: center;
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    z-index: 1000;
+    z-index: 1100;
     transition: all 0.3s ease;
 }
 
@@ -363,6 +363,14 @@ body {
 
 /* RESPONSIVIDADE — FRENTE */
 @media (max-width: 600px) {
+    body {
+        padding-bottom: 100px;
+    }
+
+    .card-container {
+        padding-bottom: 100px;
+    }
+
     .card { width: 92vw; min-height: 280px; }
     .card-front { padding: 22px 20px; }
     .logo-img-front { width: 82px; margin-bottom: 5px; }
@@ -372,6 +380,12 @@ body {
     .engineer-name { font-size: 12px; letter-spacing: 1.5px; }
     .divider-line { margin-top: 3px; margin-bottom: 6px; }
     .link-contato { font-size: 18px; }
+    .whatsapp-float {
+        width: 56px;
+        height: 56px;
+        bottom: 18px;
+        right: 18px;
+    }
 }
 
 /* ========================================================================

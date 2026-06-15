@@ -551,3 +551,27 @@ body {
         line-height: 1.28;
     }
 }
+
+/* EFEITO DE TOQUE NO MOBILE (APENAS TELEFONES, ENDEREÇO E BOTÃO FLUTUANTE) */
+.link-contato:active,
+.address-block:active,
+.content-back .address-block:active {
+    transform: scale(1.05) !important;
+    color: #0055FF !important;
+}
+
+/* Força a troca de cor dos ícones internos dos telefones no toque */
+.link-contato:active svg {
+    fill: #0055FF !important;
+}
+
+/* Força a troca de cor do texto do endereço do verso no toque */
+.content-back .address-block:active .address-text p {
+    color: #0055FF !important;
+}
+
+/* Efeito de clique rápido no botão flutuante do WhatsApp */
+.whatsapp-float:active {
+    transform: scale(0.95) rotate(5deg) !important;
+    background-color: #1ebd56 !important;
+}

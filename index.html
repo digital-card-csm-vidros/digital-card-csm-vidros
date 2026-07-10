@@ -114,10 +114,93 @@
         </svg>
     </a>
 
-    <dialog id="maps-choice-dialog" style="border:none;border-radius:12px;padding:16px 20px;box-shadow:0 4px 24px rgba(0,0,0,0.25);font-family:'Montserrat',sans-serif;max-width:90vw;">
-        <div style="display:flex;flex-direction:column;gap:10px;">
-            <button type="button" id="open-google-maps" style="border:none;border-radius:8px;padding:12px 16px;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;background:#f5f5f5;color:#333;">📍 Abrir no Google Maps</button>
-            <button type="button" id="open-waze" style="border:none;border-radius:8px;padding:12px 16px;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;background:#f5f5f5;color:#333;">🚗 Abrir no Waze</button>
+    <style>
+        #maps-choice-dialog {
+            border: none;
+            border-radius: 16px;
+            padding: 20px;
+            margin: auto;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            font-family: 'Montserrat', sans-serif;
+            max-width: 90vw;
+            width: 300px;
+            background: #ffffff;
+        }
+
+        #maps-choice-dialog::backdrop {
+            background: rgba(0, 0, 0, 0.55);
+        }
+
+        #maps-choice-dialog[open] {
+            animation: maps-dialog-in 0.25s ease forwards;
+        }
+
+        #maps-choice-dialog[open]::backdrop {
+            animation: maps-backdrop-in 0.25s ease forwards;
+        }
+
+        @keyframes maps-dialog-in {
+            from {
+                opacity: 0;
+                transform: scale(0.92);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes maps-backdrop-in {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        #maps-choice-dialog .maps-choice-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        #maps-choice-dialog .maps-choice-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            height: 50px;
+            width: 100%;
+            border: none;
+            border-radius: 10px;
+            padding: 0 16px;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            background: #f5f5f5;
+            color: #333333;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+
+        #maps-choice-dialog .maps-choice-btn:hover {
+            background: #ebebeb;
+            transform: scale(1.02);
+        }
+    </style>
+
+    <dialog id="maps-choice-dialog">
+        <div class="maps-choice-actions">
+            <button type="button" id="open-google-maps" class="maps-choice-btn">
+                <iconify-icon icon="logos:google-maps" width="22" height="22"></iconify-icon>
+                Abrir no Google Maps
+            </button>
+            <button type="button" id="open-waze" class="maps-choice-btn">
+                <iconify-icon icon="simple-icons:waze" width="22" height="22"></iconify-icon>
+                Abrir no Waze
+            </button>
         </div>
     </dialog>
 
@@ -152,6 +235,8 @@
             });
         })();
     </script>
+
+    <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
 
 </body>
 </html>
